@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Cashu Backup Audit</title>
+<link rel="stylesheet" href="style.css">
+<script src="token.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<main>
+<header><p class="eyebrow">Cashu · Backup checks</p><h1>Count proofs,<br>not copies.</h1>
+<p class="intro">Compare saved Cashu tokens before you mistake repeated backups for extra value.</p></header>
+<aside class="notice"><strong>Face value is not a balance.</strong> This tool cannot tell whether tokens are genuine, already spent or redeemable. It never contacts a mint.</aside>
+<section aria-labelledby="input-heading">
+<h2 id="input-heading">Your token backups</h2>
+<label for="tokens">One cashuA or cashuB token per line</label>
+<p id="help">Paste only on a computer you trust. Processing stays in this page. Up to 1 MiB, 200 tokens and 10,000 proofs. No account or wallet connection.</p>
+<textarea id="tokens" rows="7" spellcheck="false" autocomplete="off" autocapitalize="off" aria-invalid="false" aria-describedby="help"></textarea>
+<p id="input-error" class="error" hidden></p>
+<div class="actions"><button id="analyse" type="button">Analyse backups</button><button id="clear" type="button" class="secondary">Clear</button><button id="export" type="button" class="secondary" disabled>Export redacted report</button></div>
+<p id="status" role="status" aria-live="polite">Ready. Nothing is saved by this tool.</p>
+</section>
+<section id="result" aria-labelledby="result-heading" hidden>
+<h2 id="result-heading">Unverified face values</h2>
+<p id="summary"></p><p id="conflict-note" class="error" hidden></p>
+<p id="table-help">Each mint and currency stays separate. Conflicting copies are excluded from deduplicated values.</p><p class="mobile-hint">Scroll the table sideways to compare all columns.</p>
+<div class="table-wrap" role="region" aria-label="Face values by mint and unit" tabindex="0">
+<table aria-describedby="table-help"><caption class="visually-hidden">Unverified face values by mint and unit</caption>
+<thead><tr><th scope="col">Mint / unit</th><th scope="col">Listed</th><th scope="col">Deduplicated</th><th scope="col">Repeated copies</th><th scope="col">Conflict copies</th></tr></thead><tbody id="rows"></tbody></table></div>
+<ul id="errors" class="error"></ul>
+<p id="short-note"></p>
+</section>
+<footer><p>No signature verification, spent-state lookup or short-keyset resolution. Short and full keyset IDs are not assumed equivalent. Omitted V3 units remain unspecified.</p><p>No storage, analytics, clipboard reading or uploads. Export includes mint URLs and amounts, not bearer proofs. Clear removes the visible input and report; browser memory cannot be securely erased. Close this tab when finished.</p></footer>
+</main>
+</body>
+</html>
